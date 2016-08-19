@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/bootstrap-table/bootstrap-table.css" rel="stylesheet">
+
+<script type="text/javascript" src="resources/js/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/bootstrap-table/bootstrap-table.js"></script>
+<style type="text/css">
+	.row-index {
+    width: 50px;
+    display: inline-block;
+}
+</style>
+<script type="text/javascript">
+	 var data = [{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"vasyf","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"172.21.1.68(部署测试)"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"213","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"172.21.2.32_bnms"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"32","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"172.21.2.32_bnms_l"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"31","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"172.31"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"172_21_152_115","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"172_21_152_115"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"1112","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"21332"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"33","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"33"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"ee","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"444"},{"UNIT_ID":"未采集","KPI_ID":"AUTO-01-0002","CLL_TIME":"未采集","DELAY_TIME":"未采集","CLL_RANGE":"IBM(10-10-20)","KPI_NAME":"增加指标_selenium2","DEVICE_ID":"www","KBP_CLASS":"10-10-20","KPI_VALUE":"未采集","ISDELAY":"未采集","MONIT_POINT":"555"}];
+
+$(function () {
+    $('#table').bootstrapTable('destroy');
+    $('#table').bootstrapTable({
+        data: data
+    });
+
+    $(".mybtn-top").click(function () {
+        $('#table').bootstrapTable('scrollTo', 0);
+    });
+    
+    $(".mybtn-row").click(function () {
+        var index = +$('.row-index').val(),
+            top = 0;
+        $('#table').find('tbody tr').each(function (i) {
+        	if (i < index) {
+            	top += $(this).height();
+            }
+        });
+        $('#table').bootstrapTable('scrollTo', top);
+    });
+    
+    $(".mybtn-btm").click(function () {
+        $('#table').bootstrapTable('scrollTo', 'bottom');
+    });
+
+});
+</script>
+</head>
+<body style="margin:20px;">
+    <div class="form-inline">
+    <button type="button" 
+            class="btn btn-default mybtn-top">
+        Scroll to top
+    </button>
+    <button type="button" 
+            class="btn btn-default mybtn-row">
+        Scroll to row index: 
+    </button>
+        <input type="number" 
+               class="form-control row-index" 
+               value="3" min="0">
+    <button type="button" 
+            class="btn btn-default mybtn-btm">
+        Scroll to bottom
+    </button>
+</div>
+
+<div style="padding: 10px; ">
+    <br>
+    <table id="table" data-search="true" data-show-columns="true" data-show-refresh="true" data-show-toggle="true" data-show-pagination-switch="true" data-pagination="true" data-height="250">
+        <thead>
+            <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="KPI_ID" data-sortable="true">Stars</th>
+                <th data-field="KPI_NAME" data-sortable="true" width="200">Name</th>
+                <th data-field="CLL_TIME" data-sortable="true">Forks</th>
+                <th data-field="MONIT_POINT" data-sortable="true">Description</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>
